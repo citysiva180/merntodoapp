@@ -9,14 +9,21 @@ mongoose.connect("mongodb://localhost/todo", {
   useUnifiedTopology: true,
 });
 
+const userSchema = new mongoose.Schema({
+  name: String,
+  password: String,
+});
+
+const User = mongoose.model("User", userSchema);
+
 app.use(cors());
 app.use(express.json());
 
-app.post("/register", (req, res) => {
+app.post("/register", async (req, res) => {
   const { userName, passWord } = req.body;
+  await user.create({ username, password });
   res.json({
-    userName,
-    passWord,
+    message: "success",
   });
 });
 
