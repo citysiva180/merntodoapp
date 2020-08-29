@@ -1,0 +1,10 @@
+.Footer {
+    /* display: flex; */
+    /* position: fixed; */
+    background-color: forestgreen;
+    height: 100px;
+}
+
+.Footer>h1 {
+    color: white
+}

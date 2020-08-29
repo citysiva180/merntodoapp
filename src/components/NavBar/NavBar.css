@@ -1,0 +1,16 @@
+.navbar {
+    background-color: forestgreen;
+    font-family: "Bree Serif", serif;
+    font-size: 30px;
+    /* box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.3); */
+}
+
+.navbar-brand {
+    font-size: 30px;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+
+.nav-link {
+    text-shadow: 2px 2px 4px #000000;
+}
