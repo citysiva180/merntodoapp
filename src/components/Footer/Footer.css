@@ -1,10 +1,11 @@
 .Footer {
-    /* display: flex; */
-    /* position: fixed; */
-    background-color: forestgreen;
-    height: 100px;
+  /* display: none; */
+  /* position: fixed; */
+
+  background-color: forestgreen;
+  height: 100px;
 }
 
-.Footer>h1 {
-    color: white
+.Footer > h1 {
+  color: white;
 }

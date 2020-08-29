@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import "../Todolist/Todolist.css";
 
 class Todo extends Component {
-  state = {};
+  state = {
+    userInput: "",
+    list: [],
+  };
+
   render() {
     return (
       <div className="ToDO">

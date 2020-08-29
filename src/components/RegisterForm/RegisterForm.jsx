@@ -1,10 +1,76 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import "../RegisterForm/RegisterForm.css";
+// import "../../server";
 
-class Register extends Component {
-  state = {};
-  render() {
-    return <h1>Register Page</h1>;
-  }
-}
+const Register = () => {
+  const [userName, setUserName] = useState("");
+  const [passWord, setPassword] = useState("");
+
+  const register = (e) => {
+    e.preventDefault();
+    fetch(`http://localhost:4000/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userName,
+        passWord,
+      }),
+    });
+  };
+
+  return (
+    <div className="RegisterPage">
+      <div className="container">
+        <div className="Register">
+          <div className="container">
+            <h1>Lets get you registered!</h1>
+            <p>{""}</p>
+            <form onSubmit={register}>
+              <div className="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter email"
+                  onChange={(e) => setUserName(e.target.value)}
+                />
+                <small id="emailHelp" className="form-text text-muted">
+                  We'll never share your email with anyone else.
+                </small>
+              </div>
+              <div className="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="exampleInputPassword1"
+                  placeholder="Password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div className="form-group form-check">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id="exampleCheck1"
+                />
+                <label className="form-check-label" for="exampleCheck1">
+                  Check me out
+                </label>
+              </div>
+              <button type="submit" className="btn btn-success">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Register;

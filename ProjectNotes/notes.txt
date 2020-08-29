@@ -1,0 +1,32 @@
+
+ ============================================================================
+ 
+ _______ _________ _______ _________ _        _______   __________________
+(  ____ \\__   __/(  ____ )\__   __/| \    /\(  ____ \  \__   __/\__   __/
+| (    \/   ) (   | (    )|   ) (   |  \  / /| (    \/     ) (      ) (   
+| (_____    | |   | (____)|   | |   |  (_/ / | (__         | |      | |   
+(_____  )   | |   |     __)   | |   |   _ (  |  __)        | |      | |   
+      ) |   | |   | (\ (      | |   |  ( \ \ | (           | |      | |   
+/\____) |   | |   | ) \ \_____) (___|  /  \ \| (____/\  ___) (___   | |   
+\_______)   )_(   |/   \__/\_______/|_/    \/(_______/  \_______/   )_(   
+                                                                          
+=============================================================================
+
+Project documentation v1.0
+Date :  08/28/2020
+Author : Shivthedev
+
+Description :  This contains the stuck ups in project and their documentations. 
+=============================================================================
+
+STUCK UP 1 : CONNECTION REFUSED
+
+Understanding Server Listening and https library. 
+
+After working for sometime I got to understand that if you need to run a server file, 
+you need to use the below command and run it. 
+
+    "node server.js" 
+
+On running this file, the required port of the file would be open which would be available 
+on connection. 
