@@ -1,10 +1,21 @@
 import React, { useState } from "react";
 import "../RegisterForm/RegisterForm.css";
+import { useHistory } from "react-router-dom";
 // import "../../server";
 
+const handleErrors = async (response) => {
+  if (!response.ok) {
+    const { message } = await response.json();
+    console.log("message", message);
+    throw Error(message);
+  }
+  return response.json();
+};
+
 const Register = () => {
-  const [userName, setUserName] = useState("");
-  const [passWord, setPassword] = useState("");
+  const [username, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const register = (e) => {
     e.preventDefault();
@@ -14,11 +25,20 @@ const Register = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userName,
-        passWord,
+        username,
+        password,
       }),
-    });
+    })
+      .then(handleErrors)
+      .then(() => {
+        history.push("/");
+      })
+      .catch((error) => {
+        setError(error);
+      });
   };
+
+  const history = useHistory();
 
   return (
     <div className="RegisterPage">
@@ -26,6 +46,19 @@ const Register = () => {
         <div className="Register">
           <div className="container">
             <h1>Lets get you registered!</h1>
+            {error && (
+              <div className="alert alert-danger" role="alert">
+                "User account already Exists!"
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="alert"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            )}
             <p>{""}</p>
             <form onSubmit={register}>
               <div className="form-group">

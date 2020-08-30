@@ -10,7 +10,7 @@ mongoose.connect("mongodb://localhost/todo", {
 });
 
 const userSchema = new mongoose.Schema({
-  name: String,
+  username: String,
   password: String,
 });
 
@@ -20,8 +20,17 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/register", async (req, res) => {
-  const { userName, passWord } = req.body;
-  await user.create({ username, password });
+  const { username, password } = req.body;
+  const user = await User.findOne({ username }).exec();
+  //Stops user from creating a new user again..
+  if (user) {
+    res.status(500);
+    res.json({
+      message: "Username Already Exists, Please pick a new Username",
+    });
+    return;
+  }
+  await User.create({ username, password });
   res.json({
     message: "success",
   });

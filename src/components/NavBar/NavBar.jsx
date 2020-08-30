@@ -28,7 +28,7 @@ const Navbar = () => {
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to="/bucketview">
-              Buck View
+              Bucket View
             </NavLink>
           </li>
           <li className="nav-item">
