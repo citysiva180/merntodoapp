@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../RegisterForm/RegisterForm.css";
 import { useHistory } from "react-router-dom";
+import { CredentialsContext } from "../../App";
 // import "../../server";
 
 const handleErrors = async (response) => {
@@ -16,7 +17,7 @@ const Register = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+  const [, setCredentials] = useContext(CredentialsContext);
   const register = (e) => {
     e.preventDefault();
     fetch(`http://localhost:4000/register`, {
@@ -31,6 +32,10 @@ const Register = () => {
     })
       .then(handleErrors)
       .then(() => {
+        setCredentials({
+          username,
+          password,
+        });
         history.push("/");
       })
       .catch((error) => {
