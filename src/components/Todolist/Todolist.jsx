@@ -1,11 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { CredentialsContext } from "../../App";
+import { v4 as uuidv4 } from "uuid";
 import "../Todolist/Todolist.css";
 
 const Todos = () => {
   const [todos, setTodos] = useState([]);
   const [todoText, setTodoText] = useState("");
   const [credentials] = useContext(CredentialsContext);
+  const [filter, setfilter] = useState("uncompleted");
 
   // useEffect(() => {
 
@@ -18,34 +20,64 @@ const Todos = () => {
         "Content-Type": "application/json",
         Authorization: `Basic ${credentials.username}:${credentials.password}`,
       },
-      body: JSON.stringify(todos),
+      body: JSON.stringify(newTodos),
     }).then(() => {});
   };
+
+  useEffect(() => {
+    fetch(`http://localhost:4000/todos`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Basic ${credentials.username}:${credentials.password}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((todos) => setTodos(todos));
+  }, []);
 
   const addTodo = (e) => {
     e.preventDefault();
     if (!todoText) return;
-    const newTodo = { checked: false, text: todoText };
+    const newTodo = { id: uuidv4(), checked: false, text: todoText };
     const newTodos = [...todos, newTodo];
     setTodos(newTodos);
     setTodoText("");
     persist(newTodos);
   };
 
-  const toggleTodo = (index) => {
+  const toggleTodo = (id) => {
     const newTodoList = [...todos];
-    newTodoList[index].checked = !newTodoList[index].checked;
+    const todoItem = newTodoList.find((todo) => todo.id === id);
+    todoItem.checked = !todoItem.checked;
     setTodos(newTodoList);
+    persist(newTodoList);
+  };
+  const getTodos = () => {
+    return todos.filter((todo) =>
+      filter === "completed" ? todo.checked : !todo.checked
+    );
+  };
+
+  const changeFilter = (newFilter) => {
+    setfilter(newFilter);
   };
 
   return (
     <div className="ToDO mx-auto">
       <h1>Lets Check those items!</h1>
+
       <div className="input-group mx-auto w-25 d-block">
-        {todos.map((todo, index) => (
-          <div key={index}>
+        <select value={filter} onChange={(e) => changeFilter(e.target.value)}>
+          <option value="completed">Completed</option>
+          <option value="uncompleted">Uncompleted</option>
+        </select>
+
+        {getTodos().map((todo) => (
+          <div key={todo.id}>
             <input
-              onChange={() => toggleTodo(index)}
+              checked={todo.checked}
+              onChange={() => toggleTodo(todo.id)}
               className="form-check-input"
               type="checkbox"
             />

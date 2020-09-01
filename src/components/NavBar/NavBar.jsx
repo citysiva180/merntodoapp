@@ -26,16 +26,6 @@ const Navbar = () => {
               Home <span className="sr-only">(current)</span>
             </NavLink>
           </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/bucketview">
-              Bucket View
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/helppage">
-              Help page
-            </NavLink>
-          </li>
         </ul>
       </div>
     </nav>

@@ -4,28 +4,29 @@ const mongoose = require("mongoose");
 const app = express();
 const port = 4000;
 
+const ObjectId = require("mongoose").Types.ObjectId;
+
 mongoose.connect("mongodb://localhost/todo", {
-  useNewUrlParser: true,
   useUnifiedTopology: true,
+  useNewUrlParser: true,
 });
 
 const userSchema = new mongoose.Schema({
   username: String,
   password: String,
 });
-
 const User = mongoose.model("User", userSchema);
 
 const todosSchema = new mongoose.Schema({
-  userId: String,
+  userId: mongoose.Schema.ObjectId,
   todos: [
     {
       checked: Boolean,
       text: String,
+      id: String,
     },
   ],
 });
-
 const Todos = mongoose.model("Todos", todosSchema);
 
 app.use(cors());
@@ -34,11 +35,10 @@ app.use(express.json());
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
   const user = await User.findOne({ username }).exec();
-  //Stops user from creating a new user again..
   if (user) {
     res.status(500);
     res.json({
-      message: "Username Already Exists, Please pick a new Username",
+      message: "user already exists",
     });
     return;
   }
@@ -51,15 +51,13 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const user = await User.findOne({ username }).exec();
-  //Stops user from creating a new user again..
   if (!user || user.password !== password) {
     res.status(403);
     res.json({
-      message: "Incorrect Password or ID",
+      message: "invalid login",
     });
     return;
   }
-  await User.create({ username, password });
   res.json({
     message: "success",
   });
@@ -71,11 +69,10 @@ app.post("/todos", async (req, res) => {
   const [username, password] = token.split(":");
   const todosItems = req.body;
   const user = await User.findOne({ username }).exec();
-  //Stops user from creating a new user again..
   if (!user || user.password !== password) {
     res.status(403);
     res.json({
-      message: "Invalid Access",
+      message: "invalid access",
     });
     return;
   }
@@ -89,7 +86,23 @@ app.post("/todos", async (req, res) => {
     todos.todos = todosItems;
     await todos.save();
   }
-  res.json({ todosItems });
+  res.json(todosItems);
+});
+
+app.get("/todos", async (req, res) => {
+  const { authorization } = req.headers;
+  const [, token] = authorization.split(" ");
+  const [username, password] = token.split(":");
+  const user = await User.findOne({ username }).exec();
+  if (!user || user.password !== password) {
+    res.status(403);
+    res.json({
+      message: "invalid access",
+    });
+    return;
+  }
+  const { todos } = await Todos.findOne({ userId: user._id }).exec();
+  res.json(todos);
 });
 
 const db = mongoose.connection;
