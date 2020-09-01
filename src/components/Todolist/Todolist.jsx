@@ -7,7 +7,7 @@ const Todos = () => {
   const [todos, setTodos] = useState([]);
   const [todoText, setTodoText] = useState("");
   const [credentials] = useContext(CredentialsContext);
-  const [filter, setfilter] = useState("uncompleted");
+  const [filter, setFilter] = useState("uncompleted");
 
   // useEffect(() => {
 
@@ -53,6 +53,7 @@ const Todos = () => {
     setTodos(newTodoList);
     persist(newTodoList);
   };
+
   const getTodos = () => {
     return todos.filter((todo) =>
       filter === "completed" ? todo.checked : !todo.checked
@@ -60,7 +61,7 @@ const Todos = () => {
   };
 
   const changeFilter = (newFilter) => {
-    setfilter(newFilter);
+    setFilter(newFilter);
   };
 
   return (
@@ -93,16 +94,10 @@ const Todos = () => {
             type="text"
             className="form-control"
             placeholder="Type a task"
-            aria-label="Recipient's username"
-            aria-describedby="button-addon2"
             onChange={(e) => setTodoText(e.target.value)}
           />
           <div className="input-group-append">
-            <button
-              className="btn btn-success"
-              type="button"
-              id="button-addon2"
-            >
+            <button className="btn btn-success" type="submit">
               Add Item
             </button>
           </div>

@@ -4,14 +4,18 @@
     font-size: 20px;
     color: white;
     text-shadow: 2px 2px 4px #000000;
-    background-color: #4158D0;
-    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    background-color: #4158d0;
+    background-image: linear-gradient(43deg,
+            #4158d0 0%,
+            #c850c0 46%,
+            #ffcc70 100%);
     /* margin: auto; */
-
+    text-decoration: none;
+    height: 2000px;
 }
 
 .Welcome>h1 {
     color: white;
     text-shadow: 2px 2px 4px #000000;
-    padding-top: 20px
+    padding-top: 20px;
 }

@@ -47,65 +47,53 @@ const Register = () => {
 
   return (
     <div className="RegisterPage">
-      <div className="container">
-        <div className="Register">
-          <div className="container">
-            <h1>Lets get you registered!</h1>
-            {error && (
-              <div className="alert alert-danger" role="alert">
-                "User account already Exists!"
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="alert"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-            )}
-            <p>{""}</p>
-            <form onSubmit={register}>
-              <div className="form-group">
-                <label htmlFor="exampleInputEmail1">Email address</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter email"
-                  onChange={(e) => setUserName(e.target.value)}
-                />
-                <small id="emailHelp" className="form-text text-muted">
-                  We'll never share your email with anyone else.
-                </small>
-              </div>
-              <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="exampleInputPassword1"
-                  placeholder="Password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <div className="form-group form-check">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  id="exampleCheck1"
-                />
-                <label className="form-check-label" htmlFor="exampleCheck1">
-                  Check me out
-                </label>
-              </div>
-              <button type="submit" className="btn btn-success">
-                Lets get you registered!
-              </button>
-            </form>
+      <div className="Register mx-auto">
+        <h1>Lets get you registered!</h1>
+        {error && (
+          <div className="alert alert-danger" role="alert">
+            "User account already Exists!"
+            <button
+              type="button"
+              className="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-        </div>
+        )}
+        <p>{""}</p>
+        <form onSubmit={register}>
+          <div className="form-group">
+            <label htmlFor="exampleInputEmail1">Email address</label>
+            <input
+              type="email"
+              className="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
+              onChange={(e) => setUserName(e.target.value)}
+            />
+            <small id="emailHelp" className="form-text text">
+              We'll never share your email with anyone else.
+            </small>
+          </div>
+          <div className="form-group">
+            <label htmlFor="exampleInputPassword1">Password</label>
+            <input
+              type="password"
+              className="form-control"
+              id="exampleInputPassword1"
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <br></br>
+
+          <button type="submit" className="btn btn-primary">
+            Lets get you registered!
+          </button>
+        </form>
       </div>
     </div>
   );
