@@ -16,9 +16,18 @@ const Welcome = () => {
       <h1>Welcome, {credentials && credentials.username}</h1>
 
       <br></br>
-      {!credentials && <Link to="/register">Register yourself!</Link>}
+      {!credentials && (
+        <Link className="btn btn-primary" to="/register">
+          Register yourself!
+        </Link>
+      )}
       <br></br>
-      {!credentials && <Link to="/login">Login!</Link>}
+      <br></br>
+      {!credentials && (
+        <Link className="btn btn-primary" to="/login">
+          Login!
+        </Link>
+      )}
       {credentials && <Todo />}
       <br></br>
       {credentials && (
