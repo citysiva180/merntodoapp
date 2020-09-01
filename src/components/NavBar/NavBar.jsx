@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark">
       <Link className="navbar-brand" to="/">
-        Strike-it!
+        Check-it!
       </Link>
       <button
         className="navbar-toggler"

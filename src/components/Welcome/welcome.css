@@ -1,6 +1,6 @@
 .Welcome>h1 {
-    padding-top: 20px;
+    padding: 20px;
     font-family: "Bree Serif", serif;
     color: forestgreen;
-    /* background-color: orange; */
+    background-color: orange;
 }

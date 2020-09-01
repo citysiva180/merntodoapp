@@ -6,7 +6,7 @@ import Footer from "../Footer/Footer";
 import Todo from "../Todolist/Todolist";
 import "../Welcome/welcome.css";
 const Welcome = () => {
-  const [credentials, setCredentialsrname] = useContext(CredentialsContext);
+  const [credentials, setCredentials] = useContext(CredentialsContext);
 
   return (
     <div className="Welcome">

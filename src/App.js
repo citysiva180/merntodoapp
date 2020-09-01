@@ -12,7 +12,10 @@ import login from "../src/components/login/login";
 export const CredentialsContext = React.createContext({});
 
 function App() {
-  const credentialsState = useState(null);
+  const credentialsState = useState({
+    username: "citysiva180@gmail.com", //Ensure to come back to remove this....
+    password: "$Meenal10",
+  });
   return (
     <div className="App">
       <CredentialsContext.Provider value={credentialsState}>

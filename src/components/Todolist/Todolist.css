@@ -1,5 +1,5 @@
-.ToDO > .container > h1 {
-  padding-top: 20px;
+.ToDO>.container>h1 {
+  padding: 20px;
   font-family: "Bree Serif", serif;
   color: forestgreen;
 }
@@ -14,9 +14,11 @@
   background-image: radial-gradient(white, yellow);
 }
 
-.ToDO > .container {
+.ToDO>.container {
   background-color: white;
   height: 1000px;
   /* border: 5px solid forestgreen */
   box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.3);
+  /* text-align: center; */
+
 }
