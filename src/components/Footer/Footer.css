@@ -2,10 +2,10 @@
   /* display: none; */
   /* position: fixed; */
 
-  background-color: forestgreen;
+  background-color: NONE;
   height: 100px;
 }
 
-.Footer > h1 {
+.Footer>h1 {
   color: white;
 }

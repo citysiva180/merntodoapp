@@ -4,7 +4,7 @@ import "../Footer/Footer.css";
 const Footer = () => {
   return (
     <div className="Footer">
-      <h1> Footer Goes here....</h1>
+      <p>Alrights Reserved to Check-it App</p>
     </div>
   );
 };

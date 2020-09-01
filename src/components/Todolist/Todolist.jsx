@@ -39,45 +39,43 @@ const Todos = () => {
   };
 
   return (
-    <div className="ToDO">
-      <div className="container">
-        <h1>Lets Check those items!</h1>
-        <div className="input-group mx-auto w-25 d-block">
-          {todos.map((todo, index) => (
-            <div key={index}>
-              <input
-                onChange={() => toggleTodo(index)}
-                className="form-check-input"
-                type="checkbox"
-              />
-              <label>{todo.text}</label>
-            </div>
-          ))}
-        </div>
-        <br></br>
-        <form onSubmit={addTodo}>
-          <div className="input-group w-50 mx-auto">
+    <div className="ToDO mx-auto">
+      <h1>Lets Check those items!</h1>
+      <div className="input-group mx-auto w-25 d-block">
+        {todos.map((todo, index) => (
+          <div key={index}>
             <input
-              value={todoText}
-              type="text"
-              className="form-control"
-              placeholder="Type a task"
-              aria-label="Recipient's username"
-              aria-describedby="button-addon2"
-              onChange={(e) => setTodoText(e.target.value)}
+              onChange={() => toggleTodo(index)}
+              className="form-check-input"
+              type="checkbox"
             />
-            <div className="input-group-append">
-              <button
-                className="btn btn-success"
-                type="button"
-                id="button-addon2"
-              >
-                Add Item
-              </button>
-            </div>
+            <label>{todo.text}</label>
           </div>
-        </form>
+        ))}
       </div>
+      <br></br>
+      <form onSubmit={addTodo}>
+        <div className="input-group w-50 mx-auto">
+          <input
+            value={todoText}
+            type="text"
+            className="form-control"
+            placeholder="Type a task"
+            aria-label="Recipient's username"
+            aria-describedby="button-addon2"
+            onChange={(e) => setTodoText(e.target.value)}
+          />
+          <div className="input-group-append">
+            <button
+              className="btn btn-success"
+              type="button"
+              id="button-addon2"
+            >
+              Add Item
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   );
 };

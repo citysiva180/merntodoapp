@@ -67,10 +67,10 @@ app.post("/login", async (req, res) => {
 
 app.post("/todos", async (req, res) => {
   const { authorization } = req.headers;
-  const [, token] = authorization.split("");
+  const [, token] = authorization.split(" ");
   const [username, password] = token.split(":");
-  const user = await User.findOne({ username }).exec();
   const todosItems = req.body;
+  const user = await User.findOne({ username }).exec();
   //Stops user from creating a new user again..
   if (!user || user.password !== password) {
     res.status(403);
@@ -83,7 +83,7 @@ app.post("/todos", async (req, res) => {
   if (!todos) {
     await Todos.create({
       userId: user._id,
-      todos: [],
+      todos: todosItems,
     });
   } else {
     todos.todos = todosItems;
