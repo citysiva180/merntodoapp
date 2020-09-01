@@ -101,7 +101,7 @@ const Register = () => {
                 </label>
               </div>
               <button type="submit" className="btn btn-success">
-                Submit
+                Lets get you registered!
               </button>
             </form>
           </div>
